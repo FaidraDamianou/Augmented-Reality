@@ -21,7 +21,8 @@
 <li>7. το ανέβασα στο github και είδα πως δουλεύει και εκεί.</li>
 </ul>
 
-
+#2nd Deliverable
+https://connected-environments.org/making/ar-playing-cards/ (for custom marker implimitation)
 # 3rd Deliverable 
 
 
