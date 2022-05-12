@@ -4,49 +4,151 @@
     <!-- we import arjs version without NFT but with marker + location based support -->
     <!--<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>-->
     <script src="build/aframe-ar.js"></script>
-    
+
     <!-- particles system component -->
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-    
+
     <!-- speech command component -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
-    <script src="build/aframe-speech-command-component.js"></script> 
-    
+    <script src="build/aframe-speech-command-component.js"></script>
+
 
     <body style="margin : 0px; overflow: hidden;">
+<!--Marker-Distance Script -->
+      <script>
+             AFRAME.registerComponent("marker-distance", {
+
+                 init: function () {
+                 this.hydrogen = document.querySelector('#Hydroatom')
+                 this.oxygen = document.querySelector('#Oxyatom')
+                 this.water = document.querySelector('#H2Oatom')
+                 this.marker1 = document.querySelector('#oxygenmarker')
+                 this.marker2 = document.querySelector('#hydrogenmarker')
+                 this.oxcard = document.querySelector('#oxygencard')
+                 this.hydrocard = document.querySelector('#hydrocard')
+                 this.h2ocard = document.querySelector('#H2Ocard')
+             },
+             tick: function()
+             {
+                 var marker1Pos, marker2Pos, markerDistance
+
+                 marker1Pos = new THREE.Vector3();
+                 this.marker1.object3D.getWorldPosition(marker1Pos);
+
+                 marker2Pos = new THREE.Vector3();
+                 this.marker2.object3D.getWorldPosition(marker2Pos);
+
+                 markerDistance = marker1Pos.distanceTo(marker2Pos);
+
+                 if (markerDistance<2)
+                 {
+
+                     this.hydrogen.setAttribute("visible", false)
+                     this.oxygen.setAttribute("visible", false)
+                     this.water.setAttribute("visible", true)
+                     this.oxcard.setAttribute("visible", false)
+                     this.hydrocard.setAttribute("visible", false)
+                     this.h2ocard.setAttribute("visible", true)
+                 }
+                 else
+                 {
+
+                     this.hydrogen.setAttribute("visible",true)
+                     this.oxygen.setAttribute("visible",true)
+                     this.water.setAttribute("visible", false)
+                     this.oxcard.setAttribute("visible", true)
+                     this.hydrocard.setAttribute("visible", true)
+                     this.h2ocard.setAttribute("visible", false)
+                 }
+             },
+         });
+         </script>
+
         <a-scene
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
-            
-            
-        <a-marker preset="hiro"> <!--entopish tou HIRO-->
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+  >
 
-           <!--XIONI KAI NEO VERSION TON SXHMATON-->
+<!--Deliverable 1-->
+
+        <a-marker preset="hiro">
+            <a-entity id="box" geometry="primitive: box; width: 0.9; depth: 0.9; height: 0.9" position="0 0 0" material="color: #083D77"></a-entity>
+            <a-entity id="cylinder" geometry="primitive: cylinder; height: 2; radius: 0.5" position="1 0 -1" material="color: #F4D35E"></a-entity>
+            <a-entity id="sphere" geometry="primitive: sphere; radius: 0.5" position="-1 0 -1" material="color: #F95738"></a-entity>
             <a-entity id="annyang" annyang-speech-recognition></a-entity>
-
-            <a-image src="assets/card-H.png" position="0 0 0"></a-image>
-
-            <a-sphere id="sphere" geometry="primitive: sphere; radius: 0.4; " material=" color: #74DAD3;" position="0 0 0"> </a-sphere> <!--sfaira-->
-           
-            <a-entity id="box" geometry="primitive: box; width: 1; depth: 1; height: 1" position="-1 0 -1" material="color: #EBC85A"></a-entity><!--kybos-->
-           
-            <a-cylinder id="cylinder" geometry="primitive: cylinder; radius: 0.3; height: 0.3;" material="color: #EB775A" position="1 0 1"> </a-cylinder> <!--kylindros-->
-             
-            <a-entity id="snow" speech-command_show="command:start;type:attribute; attribute:visible; value:true;" speech-command_hide="command:stop; type:attribute;attribute:visible; value:false;" position="0 2.25 -15"
-            particle-system="preset:snow; size:4; particleCount:2300;"></a-entity>
-            
+            <a-entity id="links" position="0 2.25 -15" particle-system="preset: snow" visible="false"
+              speech-command__start="command: start; type: attribute; attribute: visible; value: true;"
+              speech-command__stop="command: stop; type: attribute; attribute: visible; value: false;">
+            </a-entity>
         </a-marker>
 
-         <!--2o PARADOTEO-->
-       <a-marker preset="custom" type="pattern" url="\assets\pattern-dpsd-19028.patt">
-   <a-sphere id="sphere" geometry="primitive: sphere; radius: 0.4; " material=" color: #74DAD3;" position="0 0 0"> </a-sphere> <!--sfaira-->
-       </a-marker>
-         
+<!--Deliverable 2-->
+<a-entity marker-distance></a-entity>
+<!--DPSD Pattern-->
+        <a-marker preset="pattern" type="pattern" url="assets/pattern-dpsd-19028.patt">
+            <a-text text="value: Faidra " position="-1.5 0 0" color= "#D73D3F"></a-text>
+            <a-image src="assets/smol_me.png"></a-image>
+            <a-text text="value: Damianou " position="-1.5 0.5 0" color= "#F4D35E"></a-text>
+        </a-marker>
 
-        <!--a-entity microphone></a-entity-->
-        <a-entity camera></a-entity>
+<!--Chemistry-->
+
+<!--Atom Models gltf-->
+<!-- Hydrogen Model-->
+       <a-assets>
+           <a-asset-item id="Hatom" src="assets/hydrogenmodel.gltf"></a-asset-item>
+       </a-assets>
+
+<!-- Oxygen Model-->
+       <a-assets>
+           <a-asset-item id="Oatom" src="assets/oxygenmodel.gltf"></a-asset-item>
+       </a-assets>
+
+<!-- H2O Model-->
+       <a-assets>
+           <a-asset-item id="H2O" src="assets/water.gltf"></a-asset-item>
+       </a-assets>
+
+<!--Oxygen Marker-->
+        <a-marker id="oxygenmarker" type="barcode" value="8">
+          <a-image id="oxygencard" src="assets/card-O.png" rotation="-90 0 0" geometry="width: 2.3; height: 2.3"></a-image>
+          <a-entity id="Oxyatom"
+                    position="0 1.5 0"
+                    rotation="0 0 0"
+                    scale="0.3 0.3 0.3"
+                    gltf-model="#Oatom"
+                    animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;"
+                    visible="true">
+          </a-entity>
+        </a-marker>
+
+<!--Hydrogen Marker-->
+        <a-marker id="hydrogenmarker" type="barcode" value="39">
+            <a-image id="hydrocard" src="assets/card-H.png" rotation="-90 0 0" geometry="width: 2.3; height: 2.3"></a-image>
+            <a-entity id="Hydroatom"
+                      position="0 1.5 0"
+                      rotation="0 0 0"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#Hatom"
+                      animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;"
+                      visible="true">
+            </a-entity>
+<!--H2O Marker-->
+            <a-image id="H2Ocard" src="assets/card-H2O.png" rotation="-90 0 0" geometry="width: 2.3; height: 2.3"></a-image>
+            <a-entity id="H2Oatom"
+                      position="0 1.5 0"
+                      rotation="0 0 0"
+                      scale="0.3 0.3 0.3"
+                      gltf-model="#H2O"
+                      animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;"
+                      visible="false">
+            </a-entity>
+        </a-marker>
+            
+         <a-entity camera></a-entity>
+
         </a-scene>
     </body>
 </html>
