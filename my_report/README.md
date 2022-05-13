@@ -22,6 +22,12 @@
 </ul>
 
 #2nd Deliverable
+<ul>
+  <li>Με τη βοήθεια το λινκ και απο τα site που μας δώθηκαν πρόσθεσα στον κώδικα το αρχείο με το pattern και έβαλα να εμφανίζεται μια σφαίρα για να κανω δοκιμές πρώτα δοκίμαζα το hiro, μετα το δικό μου</li>
+  <li>Όσο έκανα δοκιμές με διάφορα custom markers και άλλαζα τον κώδικα σταμάτησε να δουλέυει και το hiro </li>
+  <li>Μια μικρή αλλαγή στην αναφορά του custom marker έκανε να δουλέψουν και τα δύο, έκανα upload στον φάκελο assets μια εικόνα (ηια να συνεχίσω την εργασία)και έκανα αμέσως ξανά δοκιμή</li>
+  <li>Πάλι σταμάτησαν να δουλεύουν και το hiro και το custom marker</li>
+</ul>
 https://connected-environments.org/making/ar-playing-cards/ (for custom marker implimitation)
 # 3rd Deliverable 
 
