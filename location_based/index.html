@@ -15,6 +15,12 @@
         vr-mode-ui="enabled: false"
 		embedded
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
+	    
+	    <a-assets>
+		<a-asset-items id="racoon" src="pots_the_raccoon/scene.gltf"></a-asset-items> 
+	    </a-assets>
+	    
+	    <a-entity gltf-model="#racoon"></a-entity>
 
         <a-box
             material="color: red;"
