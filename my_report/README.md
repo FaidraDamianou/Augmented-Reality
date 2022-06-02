@@ -29,8 +29,15 @@
   <li>Πάλι σταμάτησαν να δουλεύουν και το hiro και το custom marker</li>
 </ul>
 https://connected-environments.org/making/ar-playing-cards/ (for custom marker implimitation)
-# 3rd Deliverable 
 
+# 3rd Deliverable 
+<ul>
+  <li>1. Άρχισα αλλάζοντας τις συντεταγμένες στο  gps-camera και το gps-entity-place του δεδομένου κουτιου </li>
+  <li>2. Ηπρώτη δοκιμή ήταν επιτυχής </li>
+  <li>3. Πρόσθεσα στον φάκελο locationbased το gltf model μου και πρόσθεσα το gps-entity-place στην αναφορά του gltf, κρατώντας το κουτί </li>
+  <li> 4. Προς το παρόν δεν δουλεύει ούτε το μοντέλο , αλλά ούτε το κουτί </li>
+    
+</ul>
 
 # Conclusions
 
